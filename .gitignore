@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom project configuration
+data/*-config.csv
+data/tasks_mapping.csv

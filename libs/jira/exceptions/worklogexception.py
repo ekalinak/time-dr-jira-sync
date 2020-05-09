@@ -1,0 +1,2 @@
+class JiraWorklogException(Exception):
+    pass

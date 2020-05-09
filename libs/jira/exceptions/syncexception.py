@@ -1,0 +1,2 @@
+class SyncException(Exception):
+    pass

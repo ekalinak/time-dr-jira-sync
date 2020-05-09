@@ -1,0 +1,49 @@
+Person,Task Name,Date,Project,Start Time,End Time,Total Time,Total Time (Decimal),Type of work
+Erik Kalinak,Demo: Preparationg,2020-03-30,IT - Project,12:26:25 PM,01:57:23 PM,1:30:58,1.51611,Computer
+Erik Kalinak,Process Improvements: Android app diagram,2020-03-30,IT - Project,09:45:50 AM,10:58:05 AM,1:12:15,1.20417,Computer
+Erik Kalinak,Meeting: Retrospecitve,2020-03-30,IT - Project,03:06:15 PM,04:14:15 PM,1:08:00,1.13333,Computer
+Erik Kalinak,Controlling: Time Doctor: Experiments,2020-03-30,IT - Project,06:37:43 AM,07:34:01 AM,0:56:18,0.93833,Computer
+Erik Kalinak,PROJ-4563: Bug: Something is not working,2020-03-31,IT - Project,01:46:02 PM,02:39:50 PM,0:53:48,0.89667,Computer
+Erik Kalinak,Controlling: Team: Holidays,2020-03-31,IT - Project,09:29:38 AM,10:11:11 AM,0:41:33,0.6925,Computer
+Erik Kalinak,Controlling: Daily overivew,2020-03-31,IT - Project,07:44:47 AM,08:15:41 AM,0:30:54,0.515,Computer
+Erik Kalinak,Demo: Preparation,2020-03-30,IT - Project,11:26:32 AM,11:56:58 AM,0:30:26,0.50722,Edited
+Erik Kalinak,Deployment,2020-03-30,IT - Project,09:16:50 AM,09:45:50 AM,0:29:00,0.48333,Edited
+Erik Kalinak,Process Improvements: Refunds,2020-03-31,IT - Project,08:22:27 AM,08:50:15 AM,0:27:48,0.46333,Computer
+Erik Kalinak,Demo: Preparation,2020-03-30,IT - Project,07:59:52 AM,08:27:16 AM,0:27:24,0.45667,Computer
+Erik Kalinak,Deployment,2020-03-30,IT - Project,07:34:01 AM,07:59:52 AM,0:25:51,0.43083,Computer
+Erik Kalinak,PROJ-4563: Bug: Can create order,2020-03-31,IT - Project,01:12:09 PM,01:36:58 PM,0:24:49,0.41361,Computer
+Erik Kalinak,PROJ-4563: Bug: Can create order: Continue,2020-03-31,IT - Project,09:29:14 PM,09:53:53 PM,0:24:39,0.41083,Computer
+Erik Kalinak,"PROJ-4181: Cant be tested",2020-03-31,IT - Project,11:02:37 AM,11:25:18 AM,0:22:41,0.37806,Computer
+Erik Kalinak,Controlling: Time Doctor: Overview,2020-03-31,IT - Project,02:40:12 PM,03:01:08 PM,0:20:56,0.34889,Computer
+Erik Kalinak,Demo,2020-03-30,IT - Project,01:57:23 PM,02:17:40 PM,0:20:17,0.33806,Computer
+Erik Kalinak,Process Improvements: Design new DB tables,2020-03-31,IT - Project,07:12:15 AM,07:32:25 AM,0:20:10,0.33611,Computer
+Erik Kalinak,Process Improvments: Daily status; Some Person,2020-03-31,IT - Project,10:11:11 AM,10:31:08 AM,0:19:57,0.3325,Computer
+Erik Kalinak,Deployment,2020-03-30,IT - Project,08:41:04 AM,08:59:44 AM,0:18:40,0.31111,Computer
+Erik Kalinak,Daily stand up,2020-03-30,IT - Project,08:59:44 AM,09:16:50 AM,0:17:06,0.285,Edited
+Erik Kalinak,PROJ-4563: Bug: Can create order,2020-03-31,IT - Project,03:17:15 PM,03:34:18 PM,0:17:03,0.28417,Computer
+Erik Kalinak,PROJ-4563: Bug: Can create order,2020-03-31,IT - Project,10:45:54 AM,11:02:37 AM,0:16:43,0.27861,Computer
+Erik Kalinak,PROJ-4563: Bug: Can create order: Pushing to production,2020-03-31,IT - Project,11:38:47 AM,11:54:55 AM,0:16:08,0.26889,Computer
+Erik Kalinak,Demo: Preparation,2020-03-30,IT - Project,11:01:10 AM,11:16:06 AM,0:14:56,0.24889,Computer
+Erik Kalinak,Controlling: Team: What to do,2020-03-31,IT - Project,10:31:08 AM,10:45:54 AM,0:14:46,0.24611,Computer
+Erik Kalinak,Controlling: Time Doctor: Checking,2020-03-31,IT - Project,12:58:17 PM,01:12:09 PM,0:13:52,0.23111,Computer
+Erik Kalinak,Controlling: Time Doctor: Checking,2020-03-31,IT - Project,06:44:08 AM,06:57:42 AM,0:13:34,0.22611,Computer
+Erik Kalinak,PROJ- : Call: How to continue in task; Persona Nueva,2020-03-30,IT - Project,04:14:15 PM,04:27:15 PM,0:13:00,0.21667,Edited
+Erik Kalinak,Daily stand up,2020-03-31,IT - Project,09:06:21 AM,09:18:55 AM,0:12:34,0.20944,Computer
+Erik Kalinak,Controlling: Time Doctor: Checking,2020-03-31,IT - Project,11:59:31 AM,12:12:03 PM,0:12:32,0.20889,Computer
+Erik Kalinak,Controlling: Time Doctor: Checking,2020-03-31,IT - Project,07:32:25 AM,07:44:47 AM,0:12:22,0.20611,Computer
+Erik Kalinak,Issues with production,2020-03-31,IT - Project,03:34:18 PM,03:46:19 PM,0:12:01,0.20028,Computer
+Erik Kalinak,Process Improvements: New file structure proposal,2020-03-30,IT - Project,11:16:06 AM,11:26:32 AM,0:10:26,0.17389,Computer
+Erik Kalinak,Process Improvements: Trello: New bug: Creating,2020-03-31,IT - Project,06:57:42 AM,07:07:50 AM,0:10:08,0.16889,Computer
+Erik Kalinak,Controlling: Team: Checking,2020-03-31,IT - Project,09:19:19 AM,09:29:15 AM,0:09:56,0.16556,Computer
+Erik Kalinak,Meeting: Retrospective,2020-03-30,IT - Project,02:43:00 PM,02:52:45 PM,0:09:45,0.1625,Computer
+Erik Kalinak,PROJ-4564: Call: Problem with implementation,2020-03-31,IT - Project,01:36:58 PM,01:46:02 PM,0:09:04,0.15111,Computer
+Erik Kalinak,PROJ-4484: Code Review: Found problem: want to test,2020-03-31,IT - Project,11:30:44 AM,11:38:47 AM,0:08:03,0.13417,Computer
+Erik Kalinak,Daily stand up,2020-03-31,IT - Project,09:00:21 AM,09:06:21 AM,0:06:00,0.1,Edited
+Erik Kalinak,Demo,2020-03-30,IT - Project,02:38:08 PM,02:43:00 PM,0:04:52,0.08111,Computer
+Erik Kalinak,Demo: Preparation,2020-03-30,IT - Project,08:38:14 AM,08:41:04 AM,0:02:50,0.04722,Computer
+Erik Kalinak,Process Improvements: Design new DB tables,2020-03-31,IT - Project,07:10:08 AM,07:11:33 AM,0:01:25,0.02361,Computer
+Erik Kalinak,Process Improvements: Design new DB tables,2020-03-31,IT - Project,07:11:47 AM,07:12:07 AM,0:00:20,0.00556,Computer
+Erik Kalinak,PROJ-4316: How to continue; Persona Verde,2020-03-31,IT - Project,07:12:07 AM,07:12:15 AM,0:00:08,0.00222,Computer
+Erik Kalinak,Operativa: Team: Checking,2020-03-31,IT - Project,09:18:55 AM,09:18:58 AM,0:00:03,0.00083,Computer
+Erik Kalinak,Operativa: Time doctor: Checking,2020-03-31,IT - Project,07:07:50 AM,07:07:52 AM,0:00:02,0.00056,Computer
+Erik Kalinak,PROJ-4130: Payment Method: Documetnation,2020-03-31,IT - Project,07:11:33 AM,07:11:35 AM,0:00:02,0.00056,Computer
