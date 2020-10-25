@@ -15,16 +15,26 @@ class Jira:
         self._DEFAULT_START_TIME = '08:00:00'
         self.prepared_entities = prepared_entities
         self.worklogs = []
-        self.worklogs_to_render = []
         self._projects = []
         self._dry_run = dry_run
 
-        self.prepare_worklogs_from_entities()
         self._check_for_duplicate_projects()
+        self.prepare_worklogs_from_entities()
 
     def _check_for_duplicate_projects(self):
+        """
+        Checks for multiple projects in prepared entities. In case it founds more of them, asks if all of projects
+        should be synced. If there are projects which we don't want to sync, script removes records from prepared
+        entities
+
+        :return bool
+        """
+        for entity in self.prepared_entities:
+            if entity.get_project() not in self._projects:
+                self._projects.append(entity.get_project())
+
         if len(self._projects) > 1:
-            print('There has been found more projects: {}'.format(', '.join(self._projects)))
+            print('There has been found more projects: \n\n* {}'.format('\n* '.join(self._projects)))
             sync_all_answer = input('Do you want to sync them all ? (y/n): ')
             while sync_all_answer.lower() not in ('y', 'yes', 'n', 'no'):
                 sync_all_answer = input('Do you want to sync them all ? (y/n)')
@@ -35,21 +45,27 @@ class Jira:
             while project_to_sync not in self._projects:
                 project_to_sync = input('Project not found. Please write one of found projects: ')
 
-            for worklog in self.worklogs:
-                if worklog.get_project() == project_to_sync:
-                    continue
-                self.worklogs.remove(worklog)
+            for entity in self.prepared_entities:
+                if entity.get_project() != project_to_sync:
+                    self.prepared_entities.remove(entity)
         return True
 
     def prepare_worklogs_from_entities(self):
+        """
+        Method prepares Jira worklogs from prepared entities ( input to class )
+
+        :return void
+        """
         for entity in self.prepared_entities:
-            if entity.project not in self._projects:
-                self._projects.append(entity.get_project())
             worklog = JiraWorklog(entity)
             self.worklogs.append(worklog)
-            self.worklogs_to_render.append(worklog.get_raw_worklog())
 
     def sync_data(self):
+        """
+        Method provide user to choose between 2 syncing methods ( or exit script )
+
+        :return void
+        """
         sync_method = '0'
         while int(sync_method) not in range(1, 4):
             sync_method = input(
@@ -68,13 +84,11 @@ class Jira:
             print('Merging by "Merged data" method ')
             sync.sync_merged_data(self._get_merged_worklogs_by_date())
 
-    def show_data_to_sync(self):
-        headers = ['Issue key', 'Date', 'Duration', 'Description']
-        print(tabulate(self.worklogs_to_render, tablefmt='fancy_grid', headers=headers))
-
     def print_merged_logs(self):
         """
-        Based on given data renders data to table
+        Based on prepared data in this class, renders data to table ( because of checking by user )
+
+        :return void
         """
         merged_logs = self._get_merged_worklogs_by_date()
         for date in merged_logs:
@@ -90,6 +104,11 @@ class Jira:
             print(tabulate(day_table, tablefmt='fancy_grid'))
 
     def _get_merged_worklogs_by_date(self):
+        """
+        Merge worklogs with same task ( identifier ) - at the end also sets correct start times for each worklogs.
+
+        :return dict
+        """
         merged_logs = {}
         for worklog in self.worklogs:
             date_identifier = worklog.get_date()
@@ -111,8 +130,8 @@ class Jira:
         """
         Sets start time for one record as previous record ended
 
-        :param merged_logs:
-        :return:
+        :param merged_logs:dict
+        :return dict
         """
         for day in merged_logs:
             day_logs = merged_logs[day]
