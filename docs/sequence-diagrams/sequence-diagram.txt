@@ -39,10 +39,6 @@ connector.py->TimeDoctor API: Get worklogs from TimeDoctor API
 TimeDoctor API-->connector.py: [ response ] Worklogs
 connector.py->sync.py: Data to sync
 deactivate connector.py
-end
-
-# Process data and send to Jira
-expandable+ Preparing and syncing data to Jira ( Tempo API )
 sync.py->timedoctor.py: Data to sync
 activate timedoctor.py
 timedoctor.py->parser.py: Parse data ( API data / Can be \n also data input )
@@ -50,6 +46,12 @@ activate parser.py
 parser.py->timedoctor.py: [ Parsed data ]
 deactivate parser.py
 timedoctor.py-->>sync.py: [ data are parsed \n and prepared to sync ]
+end
+
+
+# Process data and send to Jira
+expandable− Preparing and syncing data to Jira ( Tempo API )
+
 deactivate timedoctor.py
 sync.py->jira.py: prepared data ( entities )
 activate jira.py
@@ -79,17 +81,3 @@ deactivate sync.py(jira)
 jira.py-->>sync.py: Everythin synced. Script end
 deactivate jira.py
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
