@@ -1,0 +1,95 @@
+title time-dr-jira-sync.py
+
+participant sync.py #lightgreen
+
+participantgroup #d56d31 timedoctor ( folder )
+participant connector.py
+participant config.py
+participant menu.py
+participant timedoctor.py
+participant parser.py
+end
+participant TimeDoctor API #A2D1E6
+participantgroup #4d83fe jira ( folder )
+participant jira.py
+participant worklog.py
+participant mapper.py
+participant sync.py(jira)
+participant config.py(jira)
+end
+participant Jira API #A2D1E6
+
+## Prepare data from Time doctor
+expandable+ Retrieving data from TimeDoctor
+sync.py ->connector.py: Initialize connection with \nTimeDoctor API
+activate connector.py
+connector.py->config.py: Get credentials for connection \n to TimeDoctor API
+activate config.py
+config.py->connector.py: Returns config data required \n for TimeDoctor API connection
+deactivate config.py
+connector.py->TimeDoctor API: Get user info
+TimeDoctor API-->connector.py: Time doctor user data \n( verification if \nconnection works)
+connector.py-->>sync.py: TimeDoctor connection OK
+sync.py->menu.py:                        Show range menu
+activate menu.py
+menu.py->>sync.py: [input] TimeRange
+deactivate menu.py
+sync.py->connector.py: Prepare request to TimeDoctor
+connector.py->TimeDoctor API: Get worklogs from TimeDoctor API
+TimeDoctor API-->connector.py: [ response ] Worklogs
+connector.py->sync.py: Data to sync
+deactivate connector.py
+end
+
+# Process data and send to Jira
+expandable+ Preparing and syncing data to Jira ( Tempo API )
+sync.py->timedoctor.py: Data to sync
+activate timedoctor.py
+timedoctor.py->parser.py: Parse data ( API data / Can be \n also data input )
+activate parser.py
+parser.py->timedoctor.py: [ Parsed data ]
+deactivate parser.py
+timedoctor.py-->>sync.py: [ data are parsed \n and prepared to sync ]
+deactivate timedoctor.py
+sync.py->jira.py: prepared data ( entities )
+activate jira.py
+jira.py->worklog.py: Prepare each entity
+activate worklog.py
+worklog.py->mapper.py: Map task in case we can't\n identify it
+activate mapper.py
+mapper.py-->>worklog.py:
+deactivate mapper.py
+worklog.py-->>jira.py: Prepared worklogs to sync
+deactivate worklog.py
+jira.py-->>sync.py: Data prepared
+sync.py->jira.py: sync data
+jira.py->sync.py(jira): Initialize JiraSync
+activate sync.py(jira)
+sync.py(jira)->config.py(jira): get Jira connection data
+activate config.py(jira)
+config.py(jira)-->>sync.py(jira): required config for Jira OK
+deactivate config.py(jira)
+sync.py(jira)->>jira.py: Jira syncer ready
+deactivate config.py(jira)
+jira.py->sync.py(jira): Sync data with Jira
+sync.py(jira)->Jira API: Sync data with Jira ( API )
+Jira API-->>sync.py(jira): response
+sync.py(jira)-->>jira.py:
+deactivate sync.py(jira)
+jira.py-->>sync.py: Everythin synced. Script end
+deactivate jira.py
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
