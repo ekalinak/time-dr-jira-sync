@@ -48,14 +48,20 @@ class Connector:
             params['_format'] = 'json'
         params['access_token'] = api_token
         response = requests.get(url, params=params)
-        json_response = json.loads(response.text)
+        try:
+            json_response = json.loads(response.text)
+        except Exception as e:
+            raise ConnectorException('\nThere has been problem with processing response from Time Doctor API. Error '
+                                     'message:\n {}\n\n Response from Time Doctor was not data, but message:\n {}'
+                                     '\n'.format(e, response.text))
+
         if response.status_code == 401:
             self.config.invalidate_api_token()
             raise ConnectorException(
-                   '\nAPI connection problem. ( Reason: {} ) \n '
-                   'Try to refresh your ACCESS TOKEN visit {} and click "Get Your Access Token'.format(
-                       response.reason, self._DOCUMENTATION_LINK)
-               )
+                '\nAPI connection problem. ( Reason: {} ) \n '
+                'Try to refresh your ACCESS TOKEN visit {} and click "Get Your Access Token'.format(
+                    response.reason, self._DOCUMENTATION_LINK)
+            )
         if response.status_code != 200:
             raise ConnectorException(
                 'Not successful response from TimeDoctor API \n\n'
@@ -102,9 +108,9 @@ class Connector:
 
     def _get_date_value(self, question):
         date_value = input(question)
-        while re.match(self._DATE_FORMAT, date_value) or not len(date_value):
-            print('Wrong format ( "YYYY-MM-DD" required ')
-            date_value = input(question)
+        #        while re.match(self._DATE_FORMAT, date_value) or not len(date_value):
+        #            print('Wrong format. "YYYY-MM-DD" required ( value was {}. Len was {} ) '.format(date_value, len(date_value)))
+        #            date_value = input(question)
 
         return date_value
 
@@ -142,7 +148,8 @@ class Connector:
         if range_id in self._loaded_data:
             return self._loaded_data[range_id]
 
-        params = {'start_date': date_range[0], 'end_date': date_range[1], 'user_ids': self._get_user_id(), 'consolidated': 0}
+        params = {'start_date': date_range[0], 'end_date': date_range[1], 'user_ids': self._get_user_id(),
+                  'consolidated': 0}
         api_response = self._make_request(api_endpoint, params)
         self._loaded_data[range_id] = api_response['worklogs']['items']
 
