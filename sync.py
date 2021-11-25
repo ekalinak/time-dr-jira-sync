@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3.6
 import argparse
 from colorama import init
 from termcolor import colored

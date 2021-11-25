@@ -26,7 +26,7 @@ class Connector:
         }
         self._CACHE_DAY = 'day'
         self._CACHE_RANGE = 'range'
-        self._DATE_FORMAT = '[0-9]{4}-[01][1-2]-[0-3][0-9]'
+        self._DATE_FORMAT = '[0-9]{4}-[0-1][0-2]-[0-3][0-9]'
         self._loaded_data = {}
         self._cache_values = {self._CACHE_DAY: '', self._CACHE_RANGE: []}
         self.config = Config()
