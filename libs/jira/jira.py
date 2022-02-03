@@ -3,6 +3,7 @@ import datetime
 from tabulate import tabulate
 from .sync import JiraSync
 from .worklog import JiraWorklog
+from .exceptions.jiraexception import JiraException
 
 
 class Jira:
@@ -11,15 +12,24 @@ class Jira:
     and syncing worklogs with Jira system
     """
 
-    def __init__(self, prepared_entities, dry_run=False):
+    def __init__(self, prepared_entities, dry_run=False, auto_sync=False):
         self._DEFAULT_START_TIME = '08:00:00'
         self.prepared_entities = prepared_entities
         self.worklogs = []
         self._projects = []
         self._dry_run = dry_run
 
+        self._prepare_projects()
+        if auto_sync and len(self._projects) > 1:
+            raise JiraException('Too many project to sync for auto sync ..')
+
         self._check_for_duplicate_projects()
         self.prepare_worklogs_from_entities()
+
+    def _prepare_projects(self):
+        for entity in self.prepared_entities:
+            if entity.get_project() not in self._projects:
+                self._projects.append(entity.get_project())
 
     def _check_for_duplicate_projects(self):
         """
@@ -29,10 +39,6 @@ class Jira:
 
         :return bool
         """
-        for entity in self.prepared_entities:
-            if entity.get_project() not in self._projects:
-                self._projects.append(entity.get_project())
-
         if len(self._projects) > 1:
             print('There has been found more projects: \n\n* {}'.format('\n* '.join(self._projects)))
             sync_all_answer = input('Do you want to sync them all ? (y/n): ')
@@ -60,20 +66,24 @@ class Jira:
             worklog = JiraWorklog(entity)
             self.worklogs.append(worklog)
 
-    def sync_data(self):
+    def sync_data(self, auto_mode=False):
         """
         Method provide user to choose between 2 syncing methods ( or exit script )
 
         :return void
         """
         sync_method = '0'
-        while int(sync_method) not in range(1, 4):
-            sync_method = input(
-                '\nDo you want to sync all data or merged data ? \n'
-                '  1) All data: Will sync data exactly how they were tracked in Time Doctor ( tested with API ) \n'
-                '  2) Merged data: Records will be merged by task and added to jira by task ( tested with File )\n'
-                '  3) Exit\n\n'
-                'Your answer: ')
+        if auto_mode:
+            sync_method = '1'
+        else:
+            while int(sync_method) not in range(1, 4):
+                sync_method = input(
+                    '\nDo you want to sync all data or merged data ? \n'
+                    '  1) All data: Will sync data exactly how they were tracked in Time Doctor ( tested with API ) \n'
+                    '  2) Merged data: Records will be merged by task and added to jira by task ( tested with File )\n'
+                    '  3) Exit\n\n'
+                    'Your answer: ')
+
         if sync_method == '3':
             sys.exit('Exiting ...')
         sync = JiraSync(self._dry_run)

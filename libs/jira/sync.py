@@ -14,7 +14,6 @@ class JiraSync:
     """
 
     def __init__(self, dry_run):
-        self._ACCOUNT_API_LINK = 'https://gymbeam.atlassian.net/wiki/rest/api/user/current'
         self.config = Config()
         self._dry_run = dry_run
 

@@ -1,10 +1,12 @@
 from .report import Report
+import sys
 
 
 class Menu:
     def __init__(self):
         self._RANGE_MENU_DAY = 1
         self._RANGE_MENU_RANGE = 2
+        self._RANGE_MENU_EXIT = 3
 
     def show_report_menu(self):
         """
@@ -40,8 +42,12 @@ class Menu:
         print('================================')
         option = input('\n  '
                        '{}) One day\n  '
-                       '{}) Date range\n\n'
-                       'Your answer: '.format(self._RANGE_MENU_DAY, self._RANGE_MENU_RANGE))
+                       '{}) Date range\n  '
+                       '{}) Exit\n\n'
+                       'Your answer: '.format(self._RANGE_MENU_DAY, self._RANGE_MENU_RANGE, self._RANGE_MENU_EXIT))
+        if int(option) == self._RANGE_MENU_EXIT:
+            sys.exit('Exiting ...')
+
         while int(option) not in [self._RANGE_MENU_DAY, self._RANGE_MENU_RANGE]:
             option = input('You have not entered possible values. Try again: ')
 

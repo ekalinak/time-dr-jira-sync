@@ -1,6 +1,7 @@
 import requests
 import json
 import re
+from datetime import datetime
 from .config import Config
 from .exceptions import ConnectorException
 
@@ -12,11 +13,6 @@ class Connector:
     """
 
     def __init__(self):
-        # Variables
-        self.temp_variables = {
-            'client_id': '2411_4rzqimlvoco4kg0gc8c0s00c80wkwwogg04o8w4k84ckck8c0c',
-            'secret_key': '5nsgg52ztls0owwocwc0kks0sw0ww84wsoggw04oo40844o00o'
-        }
         self._TOKEN_AUTH_URL = 'https://webapi.timedoctor.com/oauth/v2/auth_login'
         self._DOCUMENTATION_LINK = 'https://webapi.timedoctor.com/doc#documentation'
         self._API_URL = 'https://webapi.timedoctor.com/v1.1/'
@@ -121,7 +117,7 @@ class Connector:
             return True
         return False
 
-    def get_user_day_worklogs(self):
+    def get_user_day_worklogs(self, auto_mode=False):
         """
         Gets users worklogs for given day.
 
@@ -130,7 +126,10 @@ class Connector:
         company_id = self._get_company_id()
         api_endpoint = self._API_METHODS['worklogs'].format(company_id)
 
-        day = self._get_day_value()
+        if auto_mode:
+            day = datetime.today().strftime('%Y-%m-%d')
+        else:
+            day = self._get_day_value()
 
         if day in self._loaded_data:
             return self._loaded_data[day]
