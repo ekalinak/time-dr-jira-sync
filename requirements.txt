@@ -29,7 +29,7 @@ pycairo==1.16.2
 pycodestyle==2.6.0
 pycups==1.9.73
 PyGObject==3.36.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyOpenSSL==19.0.0
 pyserial==3.4
 python2-pythondialog==3.5.1
